@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins';
+        }
+        img{
+            width: 100%;
+        }
+        .img{
+            background-color: #fff;
+            height: 100%;
+            display: flex;
+            border: 2px solid black;
+            width: 500px;
+        }
+        .img > div{
+            width: 50%;
+            text-align: center;
+        }
+        .img > div:last-child{
+            border: 8px double #fdbf39;
+            margin: 10px;
+            padding: 10px;
+        }
+        .qr_code{
+            width:50%;
+            border: 3px solid #fdbf39;
+            border-radius: 10px;
+        }
+        h3{
+            padding: 7px;
+            -webkit-text-stroke: thick;
+            color: #373435;
+            letter-spacing: 10px;
+        }
+        .grid{
+            display:grid;
+            grid-template-columns: 49% 49%;
+            grid-gap: 1%;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid">
+       {% for volunteer in volunteer %}
+       <div class="img">
+        <div style="position: relative;">
+            <center class="front_id" style="position: absolute;bottom: 10px;width: 100%;color: #fff;">
+                {{volunteer.id}}
+            </center>
+            <img src="/static/TMC_IDs_({{volunteer.department}}).png" alt="">
+        </div>
+        <div>
+            <img src="/static/TMC_LOGO.png" alt="">
+            <img class="qr_code" src="{{volunteer.qr_code}}" alt="">
+             <h3>
+               {{volunteer.id}}
+             </h3>
+             <sub style="line-height: 0.1px;">
+                This is to certify that the specified name has volunteered to join the workforce of The Midnight Cry <br>
+                <em>Col 3:23-24</em>
+             </sub>
+        </div>
+    </div>
+       {% endfor %}
+    </div>
+</body>
+</html>
